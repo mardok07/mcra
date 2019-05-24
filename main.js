@@ -36,10 +36,11 @@ app.on('activate', function () {
 
 require('update-electron-app')()
 require('update-electron-app')({
-  repo: 'github-user/repo',
-  updateInterval: '1 hour',
+  repo: 'mardok07/mcra',
+  updateInterval: '5 minutes',
   logger: require('electron-log')
 })
+
 
 
 
