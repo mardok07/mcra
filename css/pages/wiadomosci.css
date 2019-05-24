@@ -1,0 +1,45 @@
+.main{
+    margin-bottom: 20px;
+}
+
+.article{
+   width:45.2%;
+   margin:2%;
+   -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.13);
+   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.13);
+   min-height: 100px;
+   display: inline-block;
+   vertical-align: top;
+   position: relative;
+}
+
+.article img{
+   max-width: 100%;
+}
+
+.article .info{
+  padding: 10px;
+}
+
+.article .title{
+  font-family: 'Avenir LT W04_85 Heavy1475548';
+  font-size:15px;
+  cursor: pointer
+}
+
+.article .tags{
+   padding-top:4px;
+   font-size: 10px;
+   color: #8a8b8a;
+   text-transform: uppercase;
+}
+
+.article .more-button{
+    position: absolute;
+    bottom: 0;
+    right:10px;
+}
+
+.background-red{
+    background: rgba(208, 2, 27, .1);
+}

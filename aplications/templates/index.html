@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html style='width:100%; height:100%; margin:0px; padding:0px;'>
+    <head>
+        <meta charset="UTF-8">
+        <title>Moja Currenda</title>
+        <link href="css/elements/scrollbar.css" rel="stylesheet" type="text/css"/>
+        <link href="css/elements/toggle-switch.css" rel="stylesheet" type="text/css"/>
+        <link href="css/elements/buttons.css" rel="stylesheet" type="text/css"/>
+        <link href="css/elements/top-bar-menu.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/elements/themify-icons.css" rel="stylesheet" type="text/css"/>
+        <link href="css/elements/tables.css" rel="stylesheet" type="text/css"/>
+        <link href="css/elements/style.css" rel="stylesheet" type="text/css"/>
+        <link href="css/elements/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <link href="css/pages/materialize.css" rel="stylesheet" type="text/css" />
+        <link href="css/pages/pisma.css" rel="stylesheet" type="text/css"/>
+        <link type="text/css" rel="stylesheet" href="https://fast.fonts.net/cssapi/320f9210-155f-4c8c-953d-8d50abe65138.css"/> 
+    </head>
+    <body style="height:100%; width:100%;">
+        <div class="header-toolbar">
+            <div class="movable">Obsługa pism komorniczych</div>
+            <div class="close-app">x</div>
+        </div>
+        <div id="pliki-main" style="overflow-y: auto;">
+            <div class="container" style="margin-top: 80px;">
+                <div class="row">
+                    <div class="col s12">
+                        <h5>Wybierz sprawę:</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <div style="display: flex;">
+                            <select class="select_type" id="stygnatura_typ">
+                                <option>KMP</option>
+                                <option>KMN</option>
+                                <option>KMS</option>
+                                <option>KM</option>
+                            </select>
+                            
+                            <input type="text" class="numer" id="stygnatura_numer" placeholder="Nr sprawy" style="flex:1 0">
+                            <input type="text" maxlength="2" id="stygnatura_rok" placeholder="19">
+
+                            <button class="find-button">
+                                <span class="ti-search"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <a class="btn-flat all_cases" link='lista_spraw.html'>Lista
+                        dostępnych spraw</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </body>
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    
+    <script src="js/libraries/jquery-3.2.1.min.js"></script>  
+    <script src="js/libraries/jquery-ui.js"></script>
+    <script src="js/parseXML.js"></script>
+    <script src="js/getData.js" type="text/javascript"></script>
+
+    <script>
+        const {dialog} = require('electron').remote;
+        const fs = require('fs');
+        var file_content = fs.readFileSync('./config/config.xml', 'utf8');
+        var settings_xml = parseXML(file_content);
+        var EAEFilesFolder = settings_xml.config.EAE_folder['#text'];
+
+        //close app
+        $('.close-app').click(function(){
+            window.close();
+        });
+        
+        var settings_xml = parseXML(file_content);
+        var file_src = settings_xml.config.EAE_folder['#text'];
+
+        var cases = [];
+        var stygnatura_numer_tags = [];
+        fs.readdirSync(file_src).forEach(file => {
+            var file_content = fs.readFileSync(file_src + '/' + file + '/case_data.xml', 'utf8');
+            var xml = parseXML(file_content);
+            
+            var single_case = {
+                'src' : file_src + '\\' + file,
+            };
+            cases.push(single_case);
+            stygnatura_numer_tags.push(xml.case_data.case.case_number['#text'].toUpperCase());
+        });
+
+        //autocomplete
+        var year_tags = [ "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"];
+        $( "#stygnatura_numer" ).autocomplete({  source: stygnatura_numer_tags });
+        $( "#stygnatura_rok" ).autocomplete({  source: year_tags  });
+
+        $('.find-button').click(function(){
+            var stygnatura_typ = $('#stygnatura_typ').val();
+            var stygnatura_numer = $('#stygnatura_numer').val();
+            var stygnatura_rok = $('#stygnatura_rok').val();
+
+            $('#pliki-main').attr('stygnatura_typ', stygnatura_typ)
+                            .attr('stygnatura_numer', stygnatura_numer)
+                            .attr('stygnatura_rok', stygnatura_rok)
+                            .attr('case_src', cases[0].src);
+
+            $('#pliki-main').load('main.html');
+        });
+
+        $('.all_cases').click(function(){
+            var link = $(this).attr('link');
+            $('#pliki-main').load(link);
+        });
+    </script>
+</html>

@@ -1,0 +1,95 @@
+<div style="padding:0 2%;">
+    
+    <div class='helpdesk-menu'>
+        <div style="margin-top:10px; margin-left:10px; line-height:40px;">
+            <img src="images/icon/currenda_icon.png" style="float:left; margin-right: 10px;">
+            <p>
+                Currenda Asystent
+            </p>
+        </div>
+        Wybierz co potrzebujesz:</br>
+
+        <div class='more-button show-page' style='margin-top:10px;' show-page='livechat'>
+            LiveChat
+        </div>
+
+        <div class='more-button show-page' style='margin-top:5px;' show-page='buy'>
+            Chcę kupić rozwiązanie
+        </div>
+
+        <div class='more-button start_process' style='margin-top:5px;'>
+            Połączenie zdalne z helpdeskiem
+        </div>
+    </div>
+    
+    <div class='helpdesk-close-button dn' style='cursor: pointer; margin-top:10px;'>
+        <div class='more-button' style="width:24px; height:24px;">
+            <img src="images/close.png">
+        </div>
+    </div>
+
+    <div class='dn helpdesk-site' id='livechat'>
+        <iframe src="https://chat.currenda.pl/livechat" style="width:98%; height:370px; border:none; margin-top:10px;"></iframe>
+        
+        <div class='more-button start_process'>
+            Połączenie zdalne z helpdeskiem
+        </div>
+    </div>
+    
+    <div class='dn helpdesk-site' id='buy'>
+        </br>
+        Wybierz usługę
+        <select id="dzial" style="width:98%; margin-left:auto; margin-right:auto;">
+            <option value="handlowy">Dział handlowy</option>
+            <option value="techniczny">Dział techniczny</option>
+        </select>
+        </br>
+        </br>
+        Treść zapytania:
+        <textarea id="zapytanie" rows="8" style="width:98%; margin-left:auto; margin-right:auto;"></textarea>
+        <div id="wyslij_wiadomosc" class="more-button pull-right">Wyślij</div>
+    </div>
+</div>
+
+<script>
+    $('#wyslij_wiadomosc').click(function(){
+        var data = {
+            'dzial' :  $('#dzial').val(),
+            'zapytanie' : $('#zapytanie').val()
+        }
+        
+        $.post( "http://10.150.11.127:81/api/save_data",{ data : data}, function( data ) {
+            alert('Pomyślnie wysłano zgłoszenie');
+        });
+    });
+    
+    var file_settings_src = './config/config.xml';
+    var file_content = fs.readFileSync(file_settings_src, 'utf8');
+    var settings_xml = parseXML(file_content);
+    
+    var electron_folder =settings_xml.config.electron_folder['#text'];
+
+    $('.start_process').click(function(){
+        const {exec} = require("child_process");
+        exec( electron_folder + 'config/MA.exe', function callback(error, stdout, stderr){
+            console.log(error);
+            console.log(stdout);
+            console.log(stderr);
+        });
+    });
+    
+    $('.show-page').click(function(){
+        var page = $(this).attr('show-page');
+
+        $('.helpdesk-site').hide();
+        $('.helpdesk-site[id=' + page + ']').show();
+        $('.helpdesk-menu').addClass('dn');
+        $('.helpdesk-close-button').removeClass('dn');
+    });
+    
+    $('.helpdesk-close-button').click(function(){
+        $('.helpdesk-close-button').addClass('dn');
+        $('.helpdesk-menu').removeClass('dn');
+        $('.helpdesk-site').hide();
+    });
+</script>

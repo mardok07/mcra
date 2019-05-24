@@ -1,0 +1,129 @@
+<link href="css/pages/wiedza.css" rel="stylesheet" type="text/css" />
+<link href="css/elements/style.css" rel="stylesheet" type="text/css" />
+
+<div class="pos-btn-back">
+    <div class="link el-btn" element_id="0" href="aplications/mcra/sites/resources/resources.html">Wróć</div>
+</div>
+
+<div class="article">
+    <ul class="flex-container">
+        <div id="articles"></div>
+    </ul>
+</div>
+
+<div class="article-video">
+    <div id="articleVideo"></div>
+</div>
+
+<div id="scooterJudgmentsTitle" class="title-cat"></div>
+<ul class="element-ul-api" id="scooterJudgments"></ul>
+
+<div class="pos-btn-back">
+    <div class="link el-btn" element_id="0" href="aplications/mcra/sites/resources/resources.html">Wróć</div>
+</div>
+
+<script>
+    var resources = api_data.resources;
+    var categories_has_resource = api_data.resource_has_category;
+    var element_id = $('#main').attr('element_id') | 0;
+    var category_type = $('#main').attr('category_type');
+
+    if(category_type == 'webinar'){
+        $('.article').css('display','none');
+        var webinars = api_data.webinars;
+        
+        $.each(webinars, function(i, webinar){
+            var element = `
+                <div class="element-video-all">
+                    <div class="title-video">${webinar.title}</div>
+                    <div class="element-video">
+                        <video width="90%" height="90%" style="margin-left:5%;" controls>
+                            <source src="${ server_url + webinar.video_src }" type="video/mp4">
+                            Twoja przeglądarka nie obsługuje plików video.
+                        </video>
+                    </div>
+                </div>
+                `;
+
+            $('#articleVideo').append(element);
+        });
+    }else if(category_type == 'zasoby'){
+        $.each(categories_has_resource, function (i, category) {
+            if (category.category_id == element_id) {
+                var img = (resources[category.resource_id].image !== '') ? '<img src="'+ resources[category.resource_id].image +'" style="width:35px; height:35px;">' : '<img src="images/icon/Asset 10.svg" style="width:35px; height:35px;">';
+
+                var element = `
+                <div class="article">
+                    <div class="el-graph">
+                        ${img}
+                    </div>
+                    <div class="pos-desc">
+                        <div class="el-title">
+                            ${resources[category.resource_id].title}
+                        </div>
+                        <div class="el-date">
+                            ${resources[category.resource_id].created_at}
+                        </div>
+                    </div>
+                    <div class="pos-btn">
+                        <div class="link el-btn" element_id="${category.resource_id}" href="aplications/mcra/sites/resources/resource_article.html">Czytaj
+                            dalej</div>
+                    </div>
+                </div>
+                `;
+
+                $('#articles').append(element);
+            }
+        });
+    }else if(category_type == 'saos'){
+        $("#scooterJudgmentsTitle").html('<img src="aplications/mcra/images/loading.gif">');
+        //akty prawne
+        $('.article').css('display','none');
+
+        $(function () {
+            $.ajax({
+                method: "GET",
+                url: "https://www.saos.org.pl/api/search/judgments?pageSize=10&pageNumber=0&all=komornik&sortingField=JUDGMENT_DATE&sortingDirection=DESC"
+            })
+            .done(function (data) {
+                $("#scooterJudgmentsTitle").html("Ostatnie 10 orzeczeń z hasłem <span>'komornik'</span> w treści orzeczenia");
+
+                for (var i = 0; i < data.items.length; i++) {
+                    var judgment = data.items[i];
+                    var url = "https://www.saos.org.pl/judgments/" + judgment.id;
+
+                    $("#scooterJudgments").append(
+                        `<li class="element-li-api">
+                            <a class="click-href" urlClick='${url}'>
+                                ${judgment.judgmentDate}, ${judgment.courtCases[0].caseNumber}, ${judgment.division.court.name}</a>
+                            <p>...${judgment.textContent}...</p>
+                        </li>`);
+                }
+                let clickHref = document.querySelectorAll('.click-href');
+                for (var i = 0; i < clickHref.length; i++) {
+                    clickHref[i].addEventListener('click', function(event) {
+                        let clickUrl = $(this).attr('urlClick');
+                        let windowNew = window.open(clickUrl,'targetWindow','toolbar=yes,location=yes,status=yes,menubar=yes,scrollbars=yes,resizable=yes,width=1366,height=768');
+                    });
+                }
+            });
+        });
+    }else if(category_type == 'akty_prawne'){
+        var acts = api_data.acts;
+        
+        $.each(acts, function (i, act) {
+            var element = `
+            <div class="article">
+                <div class="el-title">
+                    ${act.name}
+                </div>
+                <div class="pos-btn">
+                    <div class="link el-btn" element_id="${act.id}" href="aplications/mcra/sites/resources/act.html">Czytaj dalej</div>
+                </div>
+            </div>
+            `;
+
+            $('#articles').append(element);
+        });
+    }
+</script>

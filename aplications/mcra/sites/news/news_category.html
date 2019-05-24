@@ -1,0 +1,56 @@
+<link href="css/pages/wiedza.css" rel="stylesheet" type="text/css" />
+
+<div class="pos-btn-back">
+    <div class="link el-btn" element_id="0" href="aplications/mcra/sites/news/news.html">Wróć</div>
+</div>
+<div class="article">
+    <div id="articles"></div>
+</div>
+<div class="pos-btn-back">
+    <div class="link el-btn" element_id="0" href="aplications/mcra/sites/news/news.html">Wróć</div>
+</div>
+<script>
+    var news = api_data.news;
+    var news_has_category = api_data.news_has_category;
+    var element_id = $('#main').attr('element_id') | 0;
+
+    // var file_settings_src = './config/config.xml'; var file_content = fs.readFileSync(file_settings_src, 'utf8'); 
+    var settings_xml = parseXML(file_content);
+    var serverIp =settings_xml.config.server['#text'];
+    
+    $.each(news_has_category, function (i, category) {
+        if (category.category_id == element_id) {
+
+            var str = news[category.news_id].description.substr(0, 50);
+            
+            var element = `
+                <div class="pos-news">
+                    <div class="flex-news">
+                        <div class="graph-news">`;
+
+                        if(news[category.news_id].image  != ""){
+                            element += `<img src="${serverIp + '/' + news[category.news_id].image}">`;
+                        }
+                        
+                element  += `</div>
+                        <div class="element-news">
+                            <div class="title-news">
+                                ${news[category.news_id].title}
+                            </div>
+                            <div class="title-desc">
+                                ${str.substr(0, Math.min(str.length, str.lastIndexOf(" ")))}...
+                            </div>
+                            <div class="el-date el-date-news">
+                                ${news[category.news_id].created_at}
+                            </div>
+                        </div>
+                        <div class="pos-btn-news">
+                            <div class="link el-btn" element_id="${category.news_id}" href="aplications/mcra/sites/news/news_article.html">Czytaj dalej</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            $('#articles').append(element);
+        }
+    });
+</script>

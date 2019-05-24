@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html style='width:100%; height:100%; margin:0px; padding:0px;'>
+    <head>
+        <meta charset="UTF-8">
+        <title>Moja Currenda</title>
+        <!--<link href="css/elements/bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
+        <link href="../../css/elements/scrollbar.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/elements/toggle-switch.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/elements/buttons.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/elements/top-bar-menu.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/elements/themify-icons.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/elements/style.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/pages/pisma.css" rel="stylesheet" type="text/css"/>
+        <link type="text/css" rel="stylesheet" href="https://fast.fonts.net/cssapi/320f9210-155f-4c8c-953d-8d50abe65138.css"/> 
+    </head>
+    <body style="height:100%; width:100%; overflow-y: scroll;">
+        <div class="header-toolbar">
+            <div class="movable">Generator pism komorniczych</div>
+            <div class="close-app">x</div>
+        </div>
+
+        <div style="margin-top:30px; padding:10px; clear: both;">
+            <b>Dane kancelarii:</b></br>
+            Nazwa:
+            <input type="text" id="chancellery_name" class=""></br>
+            Adres:
+            <input type="text" id="chancellery_adress"></br>
+            Miasto:
+            <input type="text" id="chancellery_city"></br>
+            Adres email:
+            <input type="text" id="chancellery_email"></br>
+            Telefon:
+            <input type="text" id="chancellery_telephone"></br>
+            Nazwa urządu:
+            <input type="text" id="department_name"></br>
+
+            <b>Ustawienia aplikacji:</b></br>
+            Serwer danych:
+            <input type="text" id="server"></br>
+            Lokalizacja folderu w której znajdują się EAE:
+            <input type="text" id="src"></br>
+<!--            Lokalizacja folderu aplikacji:
+            <input type="text" id="electron_folder"></br>
+            <button class="more-button" id="point_folder">Wskaż lokalizację</button>-->
+            <button class="more-button pull-right" id="save_settings">Zapisz</button>
+        </div>
+    </body>
+
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src="../../js/libraries/jquery-3.2.1.min.js"></script>  
+    <script src="../../js/parseXML.js"></script>  
+    <script src="../../js/settings.js"></script>  
+
+    <script>
+        var file_settings_src = './config/config.xml';
+        var file_content = fs.readFileSync(file_settings_src, 'utf8');
+        var settings_xml = parseXML(file_content);
+        $('#server').val(settings_xml.config.server['#text']);
+        $('#src').val(settings_xml.config.EAE_folder['#text']);
+        
+        var file_user_data_src = './config/user_data.xml';
+        var user_data = fs.readFileSync(file_user_data_src, 'utf8');
+        var user_data_xml = parseXML(user_data);
+
+        $('#chancellery_name').val(user_data_xml.user_data.chancellery.chancellery_name['#text']);
+        $('#chancellery_city').val(user_data_xml.user_data.chancellery.chancellery_city['#text']);
+        $('#chancellery_adress').val(user_data_xml.user_data.chancellery.chancellery_adress['#text']);
+        $('#chancellery_email').val(user_data_xml.user_data.chancellery.chancellery_email['#text']);
+        $('#chancellery_telephone').val(user_data_xml.user_data.chancellery.chancellery_telephone['#text']);
+        $('#department_name').val(user_data_xml.user_data.department.department_name['#text']);
+
+        //save settings
+        $('#save_settings').click(function(){ 
+            //settings
+            doc = $.parseXML(file_content);
+            $(doc).find('server').text($('#server').val());
+            $(doc).find('EAE_folder').text($('#src').val());
+            content = (new XMLSerializer()).serializeToString(doc);
+
+            try { fs.writeFileSync(file_settings_src, content, 'utf-8'); 
+//                alert('Pomyślnie zapisano ustawienia');
+            }catch(e) { 
+                alert('Wystąpił błąd!');
+                console.log(e);
+            }
+
+            //chancellary data
+            var chancellery_name = $('#chancellery_name').val();
+            var chancellery_city = $('#chancellery_city').val();
+
+            doc = $.parseXML(user_data);
+            $(doc).find('chancellery_name').text($('#chancellery_name').val());
+            $(doc).find('chancellery_city').text($('#chancellery_city').val());
+            $(doc).find('chancellery_adress').text($('#chancellery_adress').val());
+            $(doc).find('chancellery_email').text($('#chancellery_email').val());
+            $(doc).find('chancellery_telephone').text($('#chancellery_telephone').val());
+            $(doc).find('department_name').text($('#department_name').val());
+            content = (new XMLSerializer()).serializeToString(doc);
+
+            try { fs.writeFileSync(file_user_data_src, content, 'utf-8'); 
+                alert('Pomyślnie zapisano ustawienia');
+            }catch(e) {
+                alert('Wystąpił błąd!');
+                console.log(e);
+            }
+        });
+
+        //close app
+        $('.close-app').click(function(){
+            window.close();
+        });
+    </script>

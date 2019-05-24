@@ -1,0 +1,32 @@
+<link href="css/pages/wiadomosci.css" rel="stylesheet" type="text/css"/>
+<div class="articles" id="notifications"></div>
+
+<script>
+    var notifications = api_data.notifications;
+    if( notifications ){
+        $.each(notifications, function(i, notification){
+            var element = '<div class="article background-red">'
+                           + '<div class="info">'
+                                + '<div class="title">' + notification.subject + '</div>'
+                                + '<div class="tags">' + notification.created_at + '</div>'
+                                +  notification.content
+                            + '</div>'
+                       + '</div>';
+            $('#notifications').append(element);
+        });
+    }
+
+    var messages = api_data.messages;
+    if( messages ){
+        $.each(messages, function(i, message){
+            var element = '<div class="article">'
+                           + '<div class="info">'
+                                + '<div class="title">' + message.subject + '</div>'
+                                + '<div class="tags">' + message.created_at + '</div>'
+                                +  message.content
+                            + '</div>'
+                       + '</div>';
+            $('#messages').append(element);
+        });
+    }
+</script>

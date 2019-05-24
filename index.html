@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Moja Currenda</title>
+        <!--<link href="css/elements/bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
+        <link href="css/elements/scrollbar.css" rel="stylesheet" type="text/css"/>
+        <link href="css/elements/buttons.css" rel="stylesheet" type="text/css"/>
+        <link href="css/elements/top-bar-menu.css" rel="stylesheet" type="text/css"/>
+        <link href="css/elements/themify-icons.css" rel="stylesheet" type="text/css"/>
+        <link href="css/elements/style.css" rel="stylesheet" type="text/css"/>
+        <link type="text/css" rel="stylesheet" href="https://fast.fonts.net/cssapi/320f9210-155f-4c8c-953d-8d50abe65138.css"/> 
+    </head>
+    <body>
+        <div class="header-toolbar">
+            <div class="movable"></div>
+            <div class="close-app">x</div>
+            <div class="minimalize-app">_</div>
+        </div>
+        
+        <div class="header"> 
+            <a href="index.html">
+                <img alt="logo Currenda.pl" src="images/svg/logo-currenda.svg">
+            </a>
+            <div class="header-menu">
+                <i class="ti-user get-tooltip" show="top-bar-account"></i>
+                <i class="ti-bell get-tooltip" show="messages"><span id="notification-count" class="badge dn"></span></i> 
+                <!--<i class="ti-help-alt top-menu-link" href="aplications/mcra/sites/faq.html"></i>-->
+                <i class="ti-settings top-menu-link" onclick="window.open('aplications/mcra/settings.html', '_blank', 'nodeIntegration=yes');"></i>
+                <!--<i class="ti-more-alt rotate90"></i>-->
+            </div>
+        </div>
+
+        <div class="sub-menu">
+            <ul>
+                <!--<li><a class="menu-link" href="aplications/mcra/auth/login.html">Logowanie</a></li>-->
+                <li><a class="menu-link" href="aplications/mcra/main.html">Aplikacje</a></li>
+                <li><a class="menu-link" href="aplications/mcra/sites/resources/resources.html">Wiedza</a></li>
+                <li><a class="menu-link" href="aplications/mcra/sites/news/news.html">Newsy</a></li>
+                <li onclick="window.open('aplications/mcra/sites/chat.html', '_blank', 'nodeIntegration=yes');">Chat</li>
+            </ul>
+        </div>
+
+        <div class="menu-tooltip dn">
+            <div class="data top-bar-account dn">
+                <ul class="tooltip">
+                    <a href="#"><li class="top-menu-link" href="aplications/mcra/sites/edytuj_dane.html">Edytuj dane</li></a>
+                    <a href="#" class="text-center get-tooltip" show='top-bar-account'><li><i class="ti-angle-double-up"></i></li></a>
+                </ul>
+            </div>
+
+            <div class="data messages dn">
+                <ul class="tooltip">
+                    <!--<a href="#"><li class="top-menu-link" href="aplications/mcra/sites/wiadomosc.html">Wyślij wiadomość</li></a>-->
+                    <a href="#"><li class="top-menu-link" href="aplications/mcra/sites/messages.html">Zobacz wiadomości</li></a>
+                    <a href="#" class="text-center get-tooltip" show='messages'><li><i class="ti-angle-double-up"></i></li></a>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- main content -->
+            <div id="main"></div>
+        <!-- end -->
+
+        <div class="footer">
+            <div class="resource">
+                <img src="images/svg/server-on.svg" />
+                <div class="info">
+                    <div class="name">ADAPTIS</div>
+                    <div class="version">online</div>
+                </div>
+            </div>
+            <div class="resource">
+                <div id="resources-chart"></div>
+                <div class="info top-menu-link cursor-pointer" href="aplications/mcra/sites/files.html">
+                    <div class="name">ZASOBY</div>
+                    <div class="version">online</div>
+                </div>
+            </div>
+            <div class="resource">
+                <img src="images/svg/server-on.svg" />
+                <div class="info top-menu-link cursor-pointer" href="aplications/mcra/sites/report_bug.html">
+                    <div class="name">OBSŁUGA </br> KLIENTA</div>
+                </div>
+            </div>
+        </div>
+
+        <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+            <script src="js/libraries/jquery-3.2.1.min.js"></script>  
+        <script>if (window.module) module = window.module;</script>
+        <script>
+            const remote = require('electron').remote
+        </script> 
+        <!--<script src="js/bootstrap.min.js" type="text/javascript"></script>-->
+        <script src="js/libraries/charts.js" type="text/javascript"></script>
+        <script src="js/mainFunctions.js"></script>  
+        <script src="js/trayIconFunctions.js" type="text/javascript"></script>
+        <script src="js/parseXML.js" type="text/javascript"></script>
+        <script src="js/getData.js" type="text/javascript"></script>
+        <script src="js/topBarMenuFunctions.js" type="text/javascript"></script>
+        <script>
+            //footer chart
+            var chart = addChart2pieces('#resources-chart', 5, 39, 39, 14, '#435c68', '#91a4ad', 32);
+        </script>
+    </body>
+</html>

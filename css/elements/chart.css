@@ -1,0 +1,44 @@
+#chart{
+    width:350px; 
+    height:400px;
+    margin-left:auto; 
+    margin-right:auto;
+}
+
+#arc5 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 0.6s linear forwards;
+}
+
+#arc4 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 0.6s linear forwards;
+}
+
+@keyframes dash {
+    to {
+      stroke-dashoffset: 0;
+    }
+}
+
+.text-left{
+    width:40%; 
+    text-align: left; 
+    color:rgb(237, 109, 61); 
+    margin-left: 8%; 
+    display: inline-block; 
+    vertical-align: top; 
+    font-size:22px;
+}
+
+.text-right{
+    width:40%; 
+    text-align: right;
+    margin-right: 8%; 
+    color:rgb(237, 109, 61);
+    display: inline-block; 
+    vertical-align: top; 
+    font-size:22px;
+}

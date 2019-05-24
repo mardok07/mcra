@@ -1,0 +1,82 @@
+
+.kancelaria ul{
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    margin-bottom: 20px;
+}
+
+.kancelaria li{
+    height: 32px;
+    padding: 16px 12px;
+    transition: 0.2s;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+.kancelaria li .info{
+    float: left; 
+    padding-left: 10px;
+}
+
+.kancelaria li.negative{
+    background: rgba(208, 2, 27, .1);
+    border-left: 4px solid rgb(208, 2, 27);
+    transition: 0.2s;
+}
+.kancelaria li.negative .icon{
+    background: rgb(208, 2, 27);
+}
+
+.kancelaria li.negative:hover{
+    background: rgba(208, 2, 27, .2);
+}
+
+.kancelaria li.positive{
+    border-left: 4px solid rgb(105, 161, 151);
+    background: rgba(105, 161, 151, .1);
+    transition: 0.2s;
+}
+
+.kancelaria li.positive .icon{
+    background: rgb(105, 161, 151);
+}
+
+.kancelaria li.positive:hover{
+    background: rgba(105, 161, 151, .3);
+}
+
+.kancelaria li .time{
+    font-size:13px;
+    float: right;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.kancelaria li .time i{
+    webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.kancelaria li .icon{
+    width: 30px;
+    height: 30px;
+    background: rgb(208, 2, 27);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    float: left;
+    color: white;
+}
+
+.kancelaria .name{
+    color: #e9500e;
+}
+
+.kancelaria .version{
+    color: rgba(0, 0, 0, .6);
+    font-size: 11px;
+}

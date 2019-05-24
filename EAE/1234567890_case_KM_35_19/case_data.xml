@@ -1,0 +1,210 @@
+﻿<case_data>
+
+
+<bailiff>
+	<name>w teście</name>
+	<district_court>w Gdańsku</district_court>
+	<title></title>
+	<first_name></first_name>
+	<last_name>Testy</last_name>
+	<street>Testowa</street>
+	<building>32</building>
+	<zipcode>22222</zipcode>
+	<city>Testowo</city>
+	<phone></phone>
+	<email>test@test.com</email>
+	<nip>1234567890</nip>
+	<bank>Bank Gospodarstwa Krajowego O. w Łodzi</bank>
+	<bank_account>68 11301163 0000 8098 0989 0809</bank_account>
+</bailiff>
+
+<case>
+	<folder_name>1234567890_case_KM_35_19</folder_name>
+	<case_type>KM</case_type>
+	<case_number>35</case_number>
+	<case_year>19</case_year>
+	<case_id>KM/35/19</case_id>
+	<receive_date>2019-04-12 00:00:00</receive_date>
+	<start_date>2019-04-12 00:00:00</start_date>
+	<case_state>Założona</case_state>
+	<legal_titles>
+		<legal_title>
+			<title_id>1615</title_id>
+			<value>Wyrok Sądu Rejonowego w Sopocie</value>
+			<title_date>2018-09-11 00:00:00</title_date>
+			<clause_date>2018-09-20 00:00:00</clause_date>
+		</legal_title>
+	</legal_titles>
+	<creditors>
+		<creditor>
+			<creditor_id>5040</creditor_id>
+			<fullname>ZALEWSKA KATARZYNA</fullname>
+			<firstname>Katarzyna</firstname>
+			<lastname>Zalewska</lastname>
+			<street>Słoneczna </street>
+			<building>12</building>
+			<flat></flat>
+			<city></city>
+			<zipcode>88888</zipcode>
+			<zippostoffice>Gdańsk</zippostoffice>
+			<country>Polska</country>
+		</creditor>
+	</creditors>
+	<deptors>
+		<deptor>
+			<creditor_id>5041</creditor_id>
+			<fullname>KWIATKOWSKI MARIAN</fullname>
+			<firstname>Marian</firstname>
+			<lastname>Kwiatkowski</lastname>
+			<street>Chopina</street>
+			<building>34</building>
+			<flat></flat>
+			<city></city>
+			<zipcode>82222</zipcode>
+			<zippostoffice>Sopot</zippostoffice>
+			<country>Polska</country>
+		</deptor>
+	</deptors>
+	<expenses>
+		<expense>
+			<expense_source>case</expense_source>
+			<expense_id></expense_id>
+			<expense_type_id></expense_type_id>
+			<name>Należność główna</name>
+			<value>3500.0000</value>
+			<tax>0</tax>
+		</expense>
+		<expense>
+			<expense_source>case</expense_source>
+			<expense_id></expense_id>
+			<expense_type_id></expense_type_id>
+			<name>Koszt procesu</name>
+			<value>150.0000</value>
+			<tax>0</tax>
+		</expense>
+		<expense>
+			<expense_source>case</expense_source>
+			<expense_id></expense_id>
+			<expense_type_id></expense_type_id>
+			<name>Koszty zastępstwa w procesie</name>
+			<value>1200.0000</value>
+			<tax>0</tax>
+		</expense>
+		<expense>
+			<expense_source>case</expense_source>
+			<expense_id></expense_id>
+			<expense_type_id></expense_type_id>
+			<name>Koszty zastępstwa w egzekucji</name>
+			<value>300.0000</value>
+			<tax>0</tax>
+		</expense>
+		<expense>
+			<expense_source>case</expense_source>
+			<expense_id>1645</expense_id>
+			<expense_type_id>105</expense_type_id>
+			<name>Zryczałtowane koszty utrwalania czynności odbywających się poza kancelarią oraz przechowywania zapisu obrazu i dźwięku</name>
+			<value>0.0000</value>
+			<tax>0.0000</tax>
+		</expense>
+		<expense>
+			<expense_source>case</expense_source>
+			<expense_id>1646</expense_id>
+			<expense_type_id>108</expense_type_id>
+			<name>Koszty uzyskania dokumentów lub informacji niezbędnych do prowadzenia postępowania</name>
+			<value>35.0000</value>
+			<tax>0.0000</tax>
+		</expense>
+		<expense>
+			<expense_source>case</expense_source>
+			<expense_id>1647</expense_id>
+			<expense_type_id>109</expense_type_id>
+			<name>Koszty doręczenia korespondencji</name>
+			<value>30.0000</value>
+			<tax>0.0000</tax>
+		</expense>
+	</expenses>
+	<repayments>
+		<repayment>
+			<repayment_id>6250</repayment_id>
+			<description>Katarzyna Zalewska</description>
+			<payer_id>5040</payer_id>
+			<date>2019-04-16 00:00:00</date>
+			<value>50.00</value>
+			<sharing>
+				<share>
+					<share_id>116370</share_id>
+					<value>0.0000</value>
+					<interest>0</interest>
+					<allocation_type>109</allocation_type>
+					<allocation></allocation>
+				</share>
+				<share>
+					<share_id>0</share_id>
+					<value>50.0000</value>
+					<allocation_type>0</allocation_type>
+					<allocation>Opłata</allocation>
+				</share>
+			</sharing>
+		</repayment>
+		<repayment>
+			<repayment_id>6251</repayment_id>
+			<description>Katarzyna Zalewska</description>
+			<payer_id>5040</payer_id>
+			<date>2019-04-16 00:00:00</date>
+			<value>85.00</value>
+			<sharing>
+				<share>
+					<share_id>116404</share_id>
+					<value>0.0000</value>
+					<interest>0</interest>
+					<allocation_type>105</allocation_type>
+					<allocation></allocation>
+				</share>
+				<share>
+					<share_id>116405</share_id>
+					<value>0.0000</value>
+					<interest>0</interest>
+					<allocation_type>108</allocation_type>
+					<allocation></allocation>
+				</share>
+				<share>
+					<share_id>0</share_id>
+					<value>85.0000</value>
+					<allocation_type>0</allocation_type>
+					<allocation>Opłata</allocation>
+				</share>
+			</sharing>
+		</repayment>
+		<repayment>
+			<repayment_id>6252</repayment_id>
+			<description>Katarzyna Zalewska</description>
+			<payer_id>5040</payer_id>
+			<date>2019-04-16 00:00:00</date>
+			<value>0.00</value>
+			<sharing>
+				<share>
+					<share_id>116445</share_id>
+					<value>35.0000</value>
+					<interest>0</interest>
+					<allocation_type>108</allocation_type>
+					<allocation></allocation>
+				</share>
+				<share>
+					<share_id>116446</share_id>
+					<value>30.0000</value>
+					<interest>0</interest>
+					<allocation_type>109</allocation_type>
+					<allocation></allocation>
+				</share>
+				<share>
+					<share_id>0</share_id>
+					<value>-65.0000</value>
+					<allocation_type>0</allocation_type>
+					<allocation>Opłata</allocation>
+				</share>
+			</sharing>
+		</repayment>
+	</repayments>
+</case>
+
+</case_data>

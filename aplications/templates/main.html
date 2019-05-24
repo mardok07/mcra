@@ -1,0 +1,87 @@
+ <div class="container">
+    <div class="row" id="go_back" style="margin: 24px 0;">
+        <a class="btn-flat" link='lista_spraw.html'><span class="ti-angle-double-left"></span> Cofnij</a>
+    </div>
+
+    <div class="row">
+        <div class="col s12 case_info_number"></div>
+    </div>
+    <div class="row">
+        <div class="col s4 case_info_receive_date"></div>
+        <div class="col s4 case_info_start_date"></div>
+        <div class="col s4 case_info_state"></div>
+    </div>
+    <div class="row">
+        <div class="col s12"></div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <nav>
+                <div class="nav-wrapper">
+                    <ul id="nav-mobile" class="top-menu">
+                        <li class="active" link='dane.html'><a>Dane szczegłowe</a></li>
+                        <li link='kwoty.html'><a>Kwoty</a></li>
+                        <li link='historia.html'><a>Historia</a></li>
+                        <li link='pisma.html'><a>Pisma</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div id='dane_pisma'></div>
+    </br></br>
+</div>
+
+<script src="../../js/parseXML.js"></script> 
+<script src="../../js/szablony/caseData.js"></script> 
+<script>
+    $('.top-menu li').click(function(){
+        $('.top-menu li').removeClass('active');
+        $(this).addClass('active');
+    });
+
+    $('#go_back').click(function(){
+        $('.right').hide('top');
+        $('.left').hide('top');
+        window.history.go();
+    });
+
+    $('#dane_pisma').load('dane.html');
+
+    $('li').click(function(){
+        var link = $(this).attr('link');
+        $('#dane_pisma').load(link);
+    });
+
+    //data wplywu
+    let receive_date = new Date(Date.parse(case_xml.case_data.case.receive_date['#text']));
+    let start_date = new Date(Date.parse(case_xml.case_data.case.start_date['#text']));
+    $('.case_info_number').append('<h3>' + case_xml.case_data.case.case_type['#text'] + " " +case_xml.case_data.case.case_number['#text'] + "/" +case_xml.case_data.case.case_year['#text'] + '</h3>');
+    $('.case_info_receive_date').append('<div class="label">Data wpływu</div><h5>' +  receive_date.toLocaleDateString("pl-PL") + '</h5>');
+    $('.case_info_start_date').append('<div class="label">Data wszczęcia</div><h5>' + start_date.toLocaleDateString("pl-PL") + '</h5>');
+    $('.case_info_title').append('<div class="label">Tytuł wykonawczy </div><h5>' + case_xml.case_data.case.legal_titles.legal_title.value['#text'] + '</h5>');
+    $('.case_info_state').append('<div class="label">Stan sprawy </div><h5>' + case_xml.case_data.case.case_state['#text'] + '</h5>');
+//case_xml.case_data.case
+
+//    //data wplywu  
+//    $('.case_info').append('<tr><td class="title"><b>' + case_xml.case_data.case.case_id['#text'] + '</b></td></tr>');
+//    $('.case_info').append('<tr><td class="title">Data wpływu </td></tr><tr><td>' +  case_xml.case_data.case.receive_date['#text'] + '</td></tr>');
+//    $('.case_info').append('<tr><td class="title">Data wszczęcia </td></tr><tr><td>' + case_xml.case_data.case.start_date['#text'] + '</td></tr>');
+
+//    $('.case_info').append('<tr><td class="title">Dłużnik  (' + case_xml.case_data.case.creditors.creditor.length + ') </td></tr>');
+//                        + '<tr><td>' + case_xml.case_data.case.creditors.creditor.fullname['#text'] + '</br>'
+//                            + xml.record.participants.participant[0].address.street['#text'] + ' ' + xml.record.participants.participant[0].address.street_number['#text'] + '/'  + xml.record.participants.participant[0].address.flat_number['#text'] 
+//                            + '</br>' + xml.record.participants.participant[0].address.postal_code['#text'] + ' ' + xml.record.participants.participant[0].address.city['#text']
+//                        +'</td></tr>');
+//    $('.case_info').append('<tr><td class="title">Wierzyciel (' + xml.record.participants.participant.length + ')</td></tr>' 
+//                            + '<tr><td>' + xml.record.participants.participant[0].name['#text'] + '  ' + xml.record.participants.participant[0].surname['#text'] + '</br>'
+//                            + xml.record.participants.participant[0].address.street['#text'] + ' ' + xml.record.participants.participant[0].address.street_number['#text'] + '/'  + xml.record.participants.participant[0].address.flat_number['#text'] 
+//                            + '</br>' + xml.record.participants.participant[0].address.postal_code['#text'] + ' ' + xml.record.participants.participant[0].address.city['#text']
+//                        +'</td></tr>');
+////    $('.case_info').append('<tr><td class="title">Kategoria wierzytelności </td></tr><tr><td>' + xml.record.attributes.attribute[1]['#text'] + '</td></tr>');
+//    $('.case_info').append('<tr><td class="title">Stan sprawy </td></tr><tr><td>' + xml.record.status.description['#text'] + '</td></tr>');
+
+//    $('.case_info').append('<tr><td class="title">Tytuł wykonawczy </td></tr><tr><td>' + case_xml.case_data.case.legal_titles.legal_title.value['#text'] + '</td></tr>');
+//    $('.case_info').append('<tr><td class="title">Stan należności </td></tr><tr><td>' + parseFloat(case_xml.case_data.case.expenses.expense[0].value['#text']).toFixed(2)+ ' PLN</td></tr>');
+//    $('.case_info').append('<tr><td class="title">Stan zaliczek </td></tr><tr><td>' + parseFloat(case_xml.case_data.case.repayments.repayment[0].value['#text']).toFixed(2) + ' PLN</td></tr>');
+</script>

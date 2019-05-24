@@ -1,0 +1,82 @@
+
+/*//////////////////////////////////////////////////////////////////
+[ Table ]*/
+
+.container-table100 {
+  width: 100%;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 33px 30px;
+  
+}
+
+table {
+  width: 100%;
+  background-color: #fff;
+  color:#484848;
+}
+
+th, td {
+  font-weight: unset;
+  padding-right: 10px;
+  border:1px solid silver;
+  color:#484848;
+}
+
+.column100 {
+  width: 130px;
+  padding-left: 25px;
+}
+
+.column100.column1 {
+  padding-left: 42px;
+}
+
+.row100.head th {
+  padding:5px;
+  font-weight:bold;
+}
+
+.row100 td {
+    padding:5px;
+}
+
+.table100.ver2 td {
+    font-size: 14px;
+    color: silver;
+    text-align: right;
+}
+
+.table100.ver2 th {
+    font-size: 12px;
+    color: #e9500e;
+    text-transform: uppercase;
+    background-color: silver;
+}
+
+.table100.ver2 .row100:hover td {
+    background-color: #ffeee8;
+    color: grey;
+}
+
+.table100.ver2 .hov-column-ver2 {
+    background-color: #ffeee8;
+    color: grey;
+}
+
+.table100.ver2 .hov-column-head-ver2 {
+    background-color: #484848 !important;
+}
+
+.table100.ver2 .row100 td:hover {
+    cursor:pointer;
+    background-color: #ffd7c9;
+    color: #484848;
+}

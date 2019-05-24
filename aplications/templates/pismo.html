@@ -1,0 +1,123 @@
+<div style="font-size:20px; font-weight: bold;">Szablon:</div>
+<style>
+/*    #dane_pisma{
+        overflow-y: scroll;
+        height:1500px;
+    }*/
+    
+    #writing_content{
+        margin-left:auto;
+        margin-right:auto;
+        font-size:12px;
+        font-family: "Times New Roman", Times, serif;
+    }
+    #writing_content p{
+        margin:0px;
+        padding:0px;
+        font-family: "Times New Roman", Times, serif;
+    }
+</style>
+
+    <div class="more-button" style="width:150px; text-align: center; margin-bottom:20px;" id="btnSave">Zapisz PDF</div>
+    <div id="writing_content" style="position:relative; border:1px solid silver; width: 810px; height:1122px; margin-bottom:0px auto 60px auto;"></div>
+
+
+<script src="../../js/parseXML.js"></script> 
+<script src="../../js/jspdf/jspdf.min.js"></script> 
+<script src="../../js/html2canvas.min.js" ></script>
+<script src="../../js/szablony/caseData.js"></script> 
+
+<script>
+    var writing_id = $('#dane_pisma').attr('writing_id');
+    
+    var file_user_data_src = './config/user_data.xml';
+    var user_data = fs.readFileSync(file_user_data_src, 'utf8');
+    var user_data_xml = parseXML(user_data);
+
+    $.ajax({
+        url: server_url + "/api/get_writing/" + writing_id,
+        context:''
+    }).done(function(content) {
+        $('#writing_content').html(content);
+        
+        var xmls = $('#writing_content').find('xml');
+        $.each(xmls, function(i, xml){
+            var xml_tag = $(xml).attr('tag');
+            var indexes = xml_tag.split(".");
+            
+            if(indexes[0] == 'user_data'){                
+                if (typeof indexes[5] !== 'undefined') {
+                    var element = user_data_xml[indexes[0]][indexes[1]][indexes[2]][indexes[3]][indexes[4]][indexes[5]]['#text'];
+                } else if (typeof indexes[4] !== 'undefined') {
+                    var element = user_data_xml[indexes[0]][indexes[1]][indexes[2]][indexes[3]][indexes[4]]['#text'];
+                }else if (typeof indexes[3] !== 'undefined') {
+                    var element = user_data_xml[indexes[0]][indexes[1]][indexes[2]][indexes[3]]['#text'];
+                }else if (typeof indexes[2] !== 'undefined') {
+                    var element = user_data_xml[indexes[0]][indexes[1]][indexes[2]]['#text'];
+                }else if (typeof indexes[1] !== 'undefined') {
+                    var element = user_data_xml[indexes[0]][indexes[1]]['#text'];
+                }
+            }else if(indexes[0] == 'case_data'){
+                if (typeof indexes[5] !== 'undefined') {
+                    var element = case_xml[indexes[0]][indexes[1]][indexes[2]][indexes[3]][indexes[4]][indexes[5]]['#text'];
+                } else if (typeof indexes[4] !== 'undefined') {
+                    var element = case_xml[indexes[0]][indexes[1]][indexes[2]][indexes[3]][indexes[4]]['#text'];
+                }else if (typeof indexes[3] !== 'undefined') {
+                    var element = case_xml[indexes[0]][indexes[1]][indexes[2]][indexes[3]]['#text'];
+                }else if (typeof indexes[2] !== 'undefined') {
+                    var element = case_xml[indexes[0]][indexes[1]][indexes[2]]['#text'];
+                }else if (typeof indexes[1] !== 'undefined') {
+                    var element = case_xml[indexes[0]][indexes[1]]['#text'];
+                }
+            }
+            $('#writing_content').find(xml).replaceWith(element);
+        });
+    }).fail(function() {
+        console.log("Wystąpił błąd podczas pobierania danych - sprawdź, czy jesteś w sieci Currenda");
+    });
+    
+    function GetTodayDate() {
+        var tdate = new Date();
+        var dd = tdate.getDate(); //yields day
+        var MM = tdate.getMonth(); //yields month
+        var yyyy = tdate.getFullYear(); //yields year
+        var currentDate= yyyy + "-" + "0" + ( MM +1) + "-" + dd + " 00:00:00";
+
+        return currentDate;
+    }
+
+    $("#btnSave").click(function() {
+        var scrBase64;
+        html2canvas(
+          $('#writing_content').get(0),
+          {allowTaint: true, logging: true, scale: 2}
+        ).then(
+            function (canvas) {
+                scrBase64 = canvas.toDataURL('image/jpeg');
+    //                scrBase64 = scrBase64.split(',')[1];
+
+                let pdf = new jsPDF('p', 'mm', 'a4');
+                pdf.addImage(scrBase64, 'JPEG', 0, 0, 211, 298);
+                pdf.save( case_xml.case_data.case.case_id['#text'] + '.pdf');
+
+                var fs = require('fs');
+                var file_content = fs.readFileSync(case_src + '/case_history.xml', 'utf8');
+                
+                var xml_add = '<case_task>'
+                                + '<case_task_id>100</case_task_id>'
+                                + '<task_description>Zawiadomienie o wszczęciu egzekucji</task_description>'
+                                + '<task_date>' + GetTodayDate() + '</task_date>'
+                                + '<task_timestamp>' + GetTodayDate() + '</task_timestamp>'
+                            + '</case_task>'
+                       + '</case_history>';
+           
+                    file_content = file_content.replace("</case_history>", "");
+                    file_content = file_content + xml_add;
+
+                try { fs.writeFileSync(case_src + '/case_history.xml', file_content, 'utf-8'); }
+                catch(e) { console.log('Failed to save the file !'); }
+
+            }
+        );
+    });
+</script>

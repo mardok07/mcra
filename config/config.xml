@@ -1,0 +1,5 @@
+<config>
+    <server>http://127.0.0.1:8000</server>
+    <EAE_folder>C:\xampp\htdocs\electron\electron\EAE\</EAE_folder>
+    <electron_folder>C:\xampp\htdocs\electron\electron\</electron_folder>
+</config>

@@ -1,0 +1,31 @@
+<script>
+    var resources = api_data.resources;
+    var element_id = $('#main').attr('element_id')|0;
+
+    var element = `     
+                <div class="more-button-back">
+                    <div class="more-button link float-right" element_id="0" href="aplications/mcra/sites/resources/resources.html">Wróć</div>
+                </div>
+                <div class="article" style="width:90%; margin-left:auto; margin-right:auto;">
+                    <div class="info" style="background-color:white;padding:20px;text-align: justify;">
+                        <div>`;
+    
+                        if(resources[element_id].image  != ""){
+                            element += `<img src="${server_url + '/' + resources[element_id].image}" style="width:100%;height:auto; margin-bottom: 5px;">`;
+                        }
+
+                       element += `</div>
+                        <div style="padding-bottom:20px;">
+                            ${resources[element_id].title}
+                        </div>
+                        <div>
+                            ${resources[element_id].description}
+                        </div>
+                    </div>
+                </div>
+                <div class="more-button-back">
+                    <div class="more-button link float-right" element_id="0" href="aplications/mcra/sites/resources/resources.html">Wróć
+                    </div>
+                </div>`;
+    $('#main').append(element);
+</script>

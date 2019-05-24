@@ -1,0 +1,41 @@
+.more-button{
+   border:1px solid #e9500e;
+   background-color:white;
+   color:#e9500e;
+   font-family: 'Avenir LT W04_65 Medium1475536';
+   font-size:13px;
+   padding:5px 8px 3px 8px;
+   transition: 0.2s;
+   /* margin-bottom:10px; */
+   cursor: pointer;
+}
+
+.more-button:hover{
+    border:1px solid #e9500e;
+    background-color:#e9500e;
+    color:white;
+}
+
+.more-button-grey{
+   background-color:white;
+   color:silver;
+   border:1px solid silver;
+   font-family: 'Avenir LT W04_65 Medium1475536';
+   font-size:13px;
+   padding:5px 8px 3px 8px;
+   transition: 0.2s;
+   /* margin-bottom:10px; */
+   cursor: pointer;
+}
+
+.more-button-grey:hover{
+    border:1px solid #e9500e;
+    background-color:#e9500e;
+    color:white;
+}
+
+.more-button-back {
+    margin: 10px 10px 20px 0;
+    display: flex;
+    justify-content: flex-end;
+}

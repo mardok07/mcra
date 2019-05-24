@@ -1,0 +1,47 @@
+<!--<div style="font-size:20px; font-weight: bold; margin-bottom:7px;">Tytuł wykonawczy</div>-->
+<!--<div class="court_title"></div>-->
+
+ <div class="row">
+    <div class="col m6 s12">
+        <div class="label">Dłużnicy</div>
+        <div class="debtors"></div>
+    </div>
+    <div class="col m6 s12">
+        <div class="label">Wierzyciele</div>
+        <div class="creditor"></div>
+    </div> 
+     
+    <div class="col m6 s12" style="margin-top:50px;">
+        <div class="label">Tytuł wykonawczy</div>
+        <div class="court_title"></div>
+    </div>
+</div>
+
+<script src="../../js/parseXML.js"></script> 
+<script src="../../js/szablony/caseData.js"></script> 
+<script>
+    var creditor =  case_xml.case_data.case.creditors.creditor;
+//    $.each(creditors, function(i, creditor){
+        var element = '<div class="section">'+
+                      '<h5>' + creditor.fullname['#text'] + '</h5> '
+                        + creditor.street['#text'] + ' ' + creditor.building['#text'] 
+                        + '</br>' + creditor.zipcode['#text'] + ' ' + creditor.zippostoffice['#text']
+                    + '</div><div class="divider"></div>';
+        $('.creditor').append(element);
+//    });
+    
+    var deptors = case_xml.case_data.case.deptors.deptor;
+//    $.each(deptors, function(i, deptor){
+        var element = '<div class="section">' +
+                '<h5>' + deptors.fullname['#text'] + '</h5> '
+                        + deptors.street['#text'] + ' ' + deptors.building['#text'] 
+                        + '</br>' + deptors.zipcode['#text'] + ' ' + deptors.zippostoffice['#text']
+                    + '</div><div class="divider"></div>';
+        $('.debtors').append(element);
+//    });
+
+    $('.court_title').html("</br>"+ case_xml.case_data.case.legal_titles.legal_title.value['#text']);
+    $('.court_title').append( "</br>Data tytułu wykonawczego: " + case_xml.case_data.case.legal_titles.legal_title.title_date['#text']);
+    $('.court_title').append( "</br>Data klauzuli: " + case_xml.case_data.case.legal_titles.legal_title.clause_date['#text']);
+</script>
+

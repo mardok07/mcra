@@ -1,0 +1,40 @@
+<script>
+    var news = api_data.news;
+    var element_id = $('#main').attr('element_id')|0;
+    
+    // var element = '<div class="article" style="width:90%; margin-left:auto; margin-right:auto; padding-top:30px;">'
+    //                     + '<div class="info">'
+    //                         + '<div style="font-weight:bold; padding-bottom:20px;">' + news[element_id].title + '</div>'
+    //                         + '<div>' + news[element_id].description + '</div>'
+    //                     + '</div>'
+    //                     + '<div class="more-button link float-right" style="margin-top:20px; width:35px; float:right;" element_id="0" href="sites/newsy.html">Wróć</div>'
+    //                 + '</div>';
+
+
+    // var file_settings_src = './config/config.xml'; var file_content = fs.readFileSync(file_settings_src, 'utf8'); 
+    var settings_xml = parseXML(file_content);
+    var serverIp =settings_xml.config.server['#text'];
+
+    var element = `
+                    <div class="more-button-back">
+                        <div class="more-button link float-right"element_id="0" href="aplications/mcra/sites/news/news.html">Wróć</div>
+                    </div>
+                    <div class="article" style="width:90%; margin-left:auto; margin-right:auto;">
+                        <div class="info" style="background-color:white;padding:20px;text-align: justify;">
+                            <div>
+                                <img src="${serverIp + '/' + news[element_id].image}"
+                                    style="width:100%;height:auto; margin-bottom: 5px;">
+                            </div>
+                            <div style="font-weight:bold; padding-bottom:20px;">
+                                ${news[element_id].title}
+                            </div>
+                            <div>
+                                ${news[element_id].description}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="more-button-back">
+                        <div class="more-button link float-right" element_id="0" href="aplications/mcra/sites/news/news.html">Wróć</div>
+                    </div>`;
+    $('#main').append(element);
+</script>

@@ -1,0 +1,40 @@
+<div id="go_back">
+    <span class="ti-angle-double-left"></span>
+</div>
+<div style="padding:5px">
+    <div style="font-size:20px; font-weight: bold; ">Dostępne sprawy</div>
+    <div class="cases"></div>
+</div>
+
+<script>
+    $('#go_back').click(function(){
+        window.history.go();
+    });
+
+    var file_content = fs.readFileSync('./config/config.xml', 'utf8');
+    var settings_xml = parseXML(file_content);
+    var file_src = settings_xml.config.EAE_folder['#text'];
+    
+    var cases = [];
+    fs.readdirSync(file_src).forEach(file => {
+        var file_content = fs.readFileSync(file_src + '/' + file + '/case_data.xml', 'utf8');
+        var xml = parseXML(file_content);
+
+        var single_case = {
+            'src' : file_src + '\\' + file,
+            'case_signaure' : xml.case_data.case.case_id['#text'].toUpperCase()
+        };
+        cases.push(single_case);
+    });
+
+    $.each(cases, function(i, single_case){
+        var element  = "<div class='case' case_src='" + single_case.src + "'>" + single_case.case_signaure + "</div>";
+        $('.cases').append(element);
+    });
+
+    $('.cases').on('click', '.case', function(){
+        var case_src = $(this).attr('case_src');
+        $('#pliki-main').attr('case_src', case_src);
+        $('#pliki-main').load('main.html');
+    });
+</script>

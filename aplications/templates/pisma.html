@@ -1,0 +1,47 @@
+
+Wyszukaj pismo:</br>
+<input id="tags_autocomplete" style='width:90%; display: inline;'>
+<button class="find-button" style='display: inline;'>
+    <span class="ti-search"></span>
+</button>
+
+</br></br>
+Dostępne pisma:
+<ol class="collection" id="writings" style="border:none;"></ol>
+
+<script src="../../js/parseXML.js"></script> 
+
+<script>
+    var writings = api_data.writings;
+    var availableTags = [];
+    $.each(writings, function(i, writing){ 
+        var element = '<li class="link" link="pismo.html" element_id="' + writing.id + '">'
+                        + writing.name
+                    + '</li>';
+            
+            var tag = {
+                "id": writing.id,
+                "name": writing.name,
+                "value": writing.name
+            };
+            
+            availableTags.push(tag);
+        $('#writings').append(element);
+    });
+    
+    $( "#tags_autocomplete" ).autocomplete({
+        source: availableTags,
+        select: function (e, ui) {
+            $('li.link[element_id=' + ui.item.id + ']').trigger('click');
+        }
+    });
+    
+    $('li.link').click(function(){
+        var link = $(this).attr('link');
+        var writing_id = $(this).attr('element_id');
+       
+        $('#dane_pisma').load(link);
+        $('#dane_pisma').attr('writing_id', writing_id);
+    });
+    
+</script>

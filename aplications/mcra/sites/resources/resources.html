@@ -1,0 +1,26 @@
+<link href="css/pages/wiedza.css" rel="stylesheet" type="text/css"/>
+<link href="css/pages/box-small.css" rel="stylesheet" type="text/css" />
+
+<div id="resource_categories"></div>
+
+<script>
+    //sprawdzenie, czy jest error
+    var attr = $('#main').attr('error');
+    if (typeof attr !== typeof undefined && attr !== false) {
+        $('#main').html($('#main').attr('error'));
+    }
+    
+    //brak erroru
+    var resources_categories = api_data.resources_categories;
+    var resources = api_data.resources;
+    var element_id = $('#main').attr('element_id')|0;
+
+    $.each(resources_categories, function(i, category){ 
+        var img = (category.img !== '') ? '<img src="'+ server_url + category.img +'" style="width:35px; height:35px;">' : '<img src="aplications/mcra/images/icon/Asset 10.svg" style="width:35px; height:35px;">';
+        var element = '<div class="box-small link box-small-animation" category_type="' + category.src + '" element_id="' + category.id + '" href="aplications/mcra/sites/resources/resource_category.html">'
+                        + img
+                        + '<p>' + category.name + '</p>'
+                    + '</div>';
+        $('#resource_categories').append(element);
+    });
+</script>

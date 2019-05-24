@@ -1,0 +1,32 @@
+<div style="font-size:20px; font-weight: bold; margin-bottom:7px;">Historia</div>
+
+<div class="table100 ver2 m-b-110">
+    <table data-vertable="ver2" border="0" cellspacing="0" id="history">
+        <thead>
+            <tr class="row100 head">
+                <th class="column100 column1" data-column="column1" style="width:20px;">Lp.</th>
+                <th class="column100 column2" data-column="column2" style="width:120px;">Data czynności</th>
+                <th class="column100 column3" data-column="column3">Nazwa czynności</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<script>
+    var case_src = $('#pliki-main').attr('case_src');
+    var file_content = fs.readFileSync(case_src + '/case_history.xml', 'utf8');
+    var case_history = parseXML(file_content);
+    var history_field =case_history.case_history.case_task;
+   
+    var index = 1;
+    $.each(history_field, function(i, field){
+        var tr = '<tr class="row100">'
+                    + '<td class="column100 column1" style="width:20px;" data-column="column1">' + index + '</td>'
+                    + '<td class="column100 column2" style="width:120px; text-align:center;"  data-column="column2">'+ field.task_date['#text'] + '</td>'
+                    + '<td class="column100 column3" data-column="column3" style="text-align:left;">'+ field.task_description['#text'] + '</td>'
+                + '<tr>';
+        index++;
+        $('#history tbody').append(tr);
+    }); 
+</script>

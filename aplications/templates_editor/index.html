@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html style='width:100%; height:100%; margin:0px; padding:0px;'>
+    <head>
+        <meta charset="UTF-8">
+        <title>Moja Currenda</title>
+        <!--<link href="css/elements/bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
+        <link href="../../css/elements/scrollbar.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/elements/toggle-switch.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/elements/buttons.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/elements/top-bar-menu.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/elements/themify-icons.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/elements/style.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/pages/pisma.css" rel="stylesheet" type="text/css"/>
+        <link type="text/css" rel="stylesheet" href="https://fast.fonts.net/cssapi/320f9210-155f-4c8c-953d-8d50abe65138.css"/> 
+    </head>
+    <body style="height:100%; width:100%;">
+        <div class="header-toolbar">
+            <div class="movable">Edytor szablonów pism komorniczych</div>
+            <div class="close-app">x</div>
+        </div>
+        <div style='height:100%; width:100%;'> 
+            <iframe src="http://10.150.11.127:81/writing_template/6" target="_blank" style="width: 100%; height: 100%; margin-top: 30px; border: none;"></iframe> 
+        </div>
+    </body>
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+        <script src="../../js/jquery-3.2.1.min.js"></script>  
+        <script src="../../js/xmlToJson.js"></script>  
+    <script>
+        const {dialog} = require('electron').remote;
+        const fs = require('fs');
+        const EAEFilesFolder = './EAE/';
+
+        $('#button').click(function(){
+            dialog.showOpenDialog({
+                properties: ['openFile', 'multiSelections']
+            }, function (files) {
+                if (files !== undefined) {
+                    var file_content = fs.readFileSync(files[0], 'utf8');
+                    
+                    var display = file_content.replace("<", "&lt;");
+                        display = display .replace(">", "&gt;");
+                    
+                    $('.right').html('<pre>' + display + '</pre>' );
+                    parseXML(file_content);
+                }
+            });
+        }); 
+        
+        function parseXML(data){
+            xmlDoc = $.parseXML( data );
+            var json_xml = xmlToJson(xmlDoc); 
+
+            var signature = json_xml.record.signature;
+            $('.signature').show();
+            $.each(signature, function(i, s_field){
+                $('.signature').append(s_field['#text']);
+            });
+        }
+        
+        var files = [];
+        var i = 0;
+        fs.readdirSync(EAEFilesFolder).forEach(file => {
+            files.push(file);
+            var element = '<li class="file" i=' + i +'>'+ file +'</li>';
+            $('.left .library ul').append(element);
+            i++;
+        });
+
+        $('.library').on('click', '.file', function(){
+            var file_id = $(this).attr('i');
+            var file_src = EAEFilesFolder + files[file_id];
+            var file_content = fs.readFileSync(file_src, 'utf8');
+
+            var display = file_content.replace("<", "&lt;");
+                display = display .replace(">", "&gt;");
+
+            $('.right').html('<pre>' + display + '</pre>' );
+            parseXML(file_content);
+        });
+
+        //close app
+        $('.close-app').click(function(){
+            window.close();
+        });
+    </script>
+
+</html>

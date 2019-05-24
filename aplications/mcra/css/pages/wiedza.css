@@ -1,0 +1,187 @@
+.articles {
+    width: 94%;
+    margin: 0 3% 20px 3%;
+}
+
+.article {
+    width: 100%;
+    display: block;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.article img {
+    max-width: 100%;
+}
+
+.article .info {
+    padding: 10px;
+}
+
+.article .title {
+    font-family: 'Avenir LT W04_85 Heavy1475548';
+    font-size: 15px;
+    cursor: pointer
+}
+
+.article .tags {
+    padding-top: 4px;
+    font-size: 10px;
+    color: #8a8b8a;
+    text-transform: uppercase;
+}
+
+.article .more-button {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+}
+
+.article .date {
+    font-family: 'Avenir LT W04_65 Medium1475536';
+    font-size: 10px;
+    color: rgb(138, 139, 138);
+}
+
+.background-red {
+    background: rgba(208, 2, 27, .1);
+}
+
+.link:hover {
+    font-weight: bold;
+}
+
+
+/* new */
+.flex-container > div {
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+}
+
+.flex-item {
+    width: 500px;
+}
+
+.el-child {
+    box-shadow: 1px 1px 10px #bfbfbf;
+    margin: 10px;
+    position: relative;
+}
+
+.pos-desc {
+    margin-left: 5px;
+}
+
+.el-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 10px 0 50px 0;
+}
+
+.el-date {
+    position: absolute;
+    bottom: 0;
+    font-size: 11px;
+    color: #c7c7c7;
+    margin: 10px 0;
+}
+
+.pos-btn {
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.pos-btn-back {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.el-btn {
+    border: 1px solid #e9500e;
+    background-color: white;
+    color: #e9500e;
+    font-family: 'Avenir LT W04_65 Medium1475536';
+    font-size: 13px;
+    padding: 5px 8px 3px 8px;
+    transition: 0.2s;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.el-btn:hover {
+    border: 1px solid transparent;
+    background-color: #e9500e;
+    color: white;
+}
+
+.el-graph {
+    width: 100%;
+    height: auto;
+}
+
+@media all and (max-width: 1175px) {
+    .flex-item {
+        width: 100%;
+        margin-right: 50px;
+    }
+}
+
+/* Style news */
+
+.pos-news {
+    box-shadow: 1px 1px 4px 1px #c7c7c7;
+    margin: 10px 80px;
+}
+
+.flex-news {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.graph-news {
+    flex: 1;
+    width: 100%;
+    height: auto;
+}
+.graph-news img {
+    width: 100%;
+    height: auto;
+}
+
+.element-news {
+    flex: 2;
+}
+.element-news > * {
+    padding: 3px 10px;
+}
+
+@media all and (max-width:768px) {
+    .pos-news {
+        margin: 0 10px;
+    }
+    .graph-news,
+    .element-news {
+        flex: 1 1 100%;
+    }
+}
+
+.element-li-api{
+    cursor: pointer;
+}
+
+.element-video-all{
+    margin-top:10px;
+}
+
+.element-video-all .title-video{
+    font-size:20px;
+    font-weight: bolder;
+}
+
+#scooterJudgments{
+    margin:5px;
+}

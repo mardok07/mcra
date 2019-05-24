@@ -1,0 +1,198 @@
+#pliki-main{
+    padding:30px 0px;
+    /* margin:30px 0px 0px 0px; */
+    height:calc(100vh - 30px);
+    width: 100%;
+}
+
+.left{
+    width:20%;
+    height:100%;
+    border-right: 1px solid silver;
+    float:left;
+}
+
+.left table{
+    padding:0px;
+    margin:0px;
+}
+
+.left table tr td{
+    padding:0px;
+    margin:0px;
+}
+
+.left .case_info{
+    width:100%;
+}
+
+.left .case_info .title{
+    background: silver;
+    color: #e9500e;
+    text-align: center;
+}
+
+.right{
+    width:78%;
+    height:100%;
+    float:left;
+}
+
+.right .top-menu{
+    list-style-type: none;
+    width: 100%;
+    margin: 10px 0px 0px 0px;
+    padding: 16px;
+}
+
+.right .top-menu li{
+    display: inline-block;
+    cursor: pointer;
+    width: 22%;
+    border-bottom: 2px solid #e9500e;
+    text-align: center;
+    margin-left:1%;
+    margin-right:1%;
+}
+
+.right .top-menu li:hover{
+    font-weight: bold;
+    border-bottom: 2px solid grey;
+    color: #e9500e;
+}
+
+.right .top-menu li.active{
+    font-weight: bold;
+    border-bottom: 2px solid grey;
+    color: #e9500e;
+}
+
+.select_type{
+    color: #e9500e;
+    font-size: 26px;
+    border: none;
+    padding: 10px;
+    border:0px;
+}
+
+.select_type:hover{
+    border: none;
+}
+
+.numer{
+    width: 150px;
+    font-size: 24px;
+    border: none;
+    border-bottom: 1px solid #e9500e;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    text-align: right;
+}
+
+#stygnatura_rok{
+    width:50px;
+    font-size: 26px;
+    border:none;
+    border-bottom:1px solid #e9500e;
+    margin-left:10px;
+    margin-right:10px;
+    /* padding:10px; */
+    text-align: right;
+}
+
+.find-button{
+    color: #e9500e;
+    border: none;
+    background:none;
+    height:50px;
+    line-height: 50px;
+    font-size:30px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.find-button:hover{
+    font-weight: bold;
+    color:grey;
+}
+
+.search-form{
+    /* margin-top:calc(50vh - 50px); 
+    color:silver;
+    width:450px;
+    margin-left:auto;
+    margin-right:auto */
+}
+
+.all_cases{
+    cursor:pointer;
+    float:right; 
+    margin-top:20px; 
+    font-size:14px;
+}
+
+.all_cases:hover{
+    text-decoration: underline;
+}
+
+#go_back{
+    /* width:30px;
+    height:30px;
+    background:silver; 
+    color:#e9500e; 
+    cursor:pointer;
+    line-height: 30px;
+    text-align: center; */
+}
+
+#go_back:hover{
+    /* background: grey; */
+}
+ 
+#dane_pisma{
+    width:99%;
+    height:100%;
+    padding:10px;
+    overflow-y:auto;
+    padding-bottom:30px;
+}
+
+.debtor{
+    cursor:pointer;
+    padding:5px;
+    width:42%;
+    margin: 1%;
+    min-height: 70px;
+    border:1px solid silver;
+    text-align: center;
+    display:inline-table;
+}
+
+.debtor:hover{
+    background:#ffd7c9;
+    color:#484848;
+    -webkit-box-shadow: 0px 0px 16px -6px rgba(110,110,110,1);
+    -moz-box-shadow: 0px 0px 16px -6px rgba(110,110,110,1);
+    box-shadow: 0px 0px 16px -6px rgba(110,110,110,1);
+}
+
+.case{
+    cursor:pointer;
+}
+
+.case:hover{
+    font-weight:bold;
+}
+
+#writings li{
+    cursor: pointer;
+}
+
+#writings li:hover{
+    color: #E9500C;
+}
+
+.label {
+    color: rgba(0,0,0,0.4);
+}

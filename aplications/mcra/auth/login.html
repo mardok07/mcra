@@ -1,0 +1,24 @@
+<div style="width:80%; margin-left:auto; margin-right:auto;">
+    <h2>Logowanie:</h2>
+    Login:
+    <input type="text" id="login" value="mardok1990@gmail.com"></br>
+    Hasło:
+    <input type="text" id="password" value="mardok1990@gmail.com"></br>
+    
+    <div class="more-button pull-right" id="login-button">Zaloguj się</div>
+</div>
+    
+<script>
+    $('#login-button').click(function(){
+        var email = $('#login').val();
+        var password = $('#password').val();
+
+        $.ajax({
+            method: "POST",
+            url: "http:127.0.0.1:8000/api/login",
+            data: { email : email , password : password }
+        }).done(function(ret) {
+            console.log(ret);
+        });
+    }); 
+</script>

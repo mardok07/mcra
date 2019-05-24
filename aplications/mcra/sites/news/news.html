@@ -1,0 +1,26 @@
+<link href="css/pages/newsy.css" rel="stylesheet" type="text/css"/>
+<link href="css/pages/box-small.css" rel="stylesheet" type="text/css"/>
+
+<div id="news_categories"></div>
+
+<div class="articles"></div>
+<script>
+    //sprawdzenie, czy jest error
+    var attr = $('#main').attr('error');
+    if (typeof attr !== typeof undefined && attr !== false) {
+        $('#main').html($('#main').attr('error'));
+    }
+
+    //brak bledu
+    var news_categories = api_data.news_categories;
+    var news = api_data.news;
+
+    $.each(news_categories, function(i, category){ 
+        var img = (category.img !== null) ? '<img src="'+ server_url + category.img +'" style="width:35px; height:35px;">' : '<img src="images/icon/Asset 10.svg" style="width:35px; height:35px;">';
+        var element = '<div class="box-small link box-small-animation" element_id="' + category.id + '" href="aplications/mcra/sites/news/news_category.html">'
+                        + img
+                        + '<p>' + category.name + '</p>'
+                    + '</div>';
+        $('#news_categories').append(element);
+    });
+</script>

@@ -1,0 +1,43 @@
+<div style="padding:0 2%;">
+    <h3>FAQ</h3>
+    
+    <form action="" method="POST">
+        <input type="text" name="username" value="m.glowacki">
+        <!--<input type="text" name="password" value="Saba9811!!">-->
+        <div class="send more-button pull-right link-browser">Wyślij</div>
+    </form>
+    
+    <ol>
+        <li>Pytnie 1</li>
+        <li>Pytanie 2</li>
+        <li>Pytanie 3</li>
+        <li>Pytanie 4</li>
+        <li>Pytanie 5</li>
+        <li>Pytanie 6</li>
+        <li>Pytanie 7</li>
+        <li>Pytanie 8</li>
+    </ol>
+</div>
+<script>
+    var jwtDecode = require('jwt-decode'); 
+    
+    $('.send').click(function(){
+        var data = {
+            username : $('input[name=username]').val(),
+            password : 'Saba9811!!',
+            client_id : 'sbk-api',
+            grant_type :  'password',
+            client_secret : '0654d3ec-6faf-4f70-85c6-43d04ff41fd3'
+        };
+        
+        $.ajax({
+          type: "POST",
+          url: 'https://id.currenda.pl/auth/realms/testrealm/protocol/openid-connect/token',
+          data: data,       
+        }).done(function(d, e) {   
+            var decoded = jwtDecode(d.access_token);
+            alert(decoded.email);
+            console.log(decoded);
+        });
+    });
+</script>

@@ -1,0 +1,44 @@
+/* BOX-SMALL */
+
+.box-small-animation {
+  margin: 0 auto;
+  width: 300px;
+}
+
+.box-small-animation:hover {
+  animation: shakeBoxAnimation 0.7s;
+}
+
+@keyframes shakeBoxAnimation {
+  10%, 90% {
+    transform: translate3d(-2px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+.box-small {
+    width:47%;
+    margin:1%;
+    background-color: white;
+    cursor:pointer;
+    height:90px;
+    padding-top:20px;
+    padding-bottom:10px;
+    text-align:center;
+    border:1px solid #eee;
+    float:left;
+    box-shadow:3px 3px 12px -3px rgba(0, 0, 0, 0.2),
+    3px 3px 12px -3px rgba(0, 0, 0, 0.2),
+    -3px 3px 12px -3px rgba(0, 0, 0, 0.2);
+}

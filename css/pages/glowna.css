@@ -1,0 +1,36 @@
+.main ul{
+    list-style-type: none;
+    margin:0px;
+    padding:0px;
+    margin-bottom:20px;
+}
+
+.main li{
+    height:32px;
+    padding:16px 12px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.main .name{
+    color:#e9500e;
+    font-weight: bolder;
+}
+
+.main .version{
+    color:#69a197;
+    font-size:11px;
+
+}
+
+.pos-name {
+    display: flex;
+    align-items: center;
+}
+.pos-name span {
+    margin-left: 5px;
+}
+
+.main li:hover{
+    background: #D3D3D3;
+}

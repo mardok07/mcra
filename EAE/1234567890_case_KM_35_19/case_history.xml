@@ -1,0 +1,32 @@
+﻿<case_history>
+	<case_task>
+		<case_task_id>8379</case_task_id>
+		<task_description>Wniosek o wszczęcie egzekucji</task_description>
+		<task_date>2019-04-12 00:00:00</task_date>
+		<task_timestamp>2019-04-17 12:31:53</task_timestamp>
+	</case_task>
+	<case_task>
+		<case_task_id>8380</case_task_id>
+		<task_description>Wezwanie o zaliczkę na wydatki gotówkowe</task_description>
+		<task_date>2019-04-12 00:00:00</task_date>
+		<task_timestamp>2019-04-17 12:33:20</task_timestamp>
+	</case_task>
+	<case_task>
+		<case_task_id>8370</case_task_id>
+		<task_description>KsP 6/19: zaliczka przychód (przychód=50,00)</task_description>
+		<task_date>2019-04-16 00:00:00</task_date>
+		<task_timestamp>2019-04-17 08:59:51</task_timestamp>
+	</case_task>
+	<case_task>
+		<case_task_id>8371</case_task_id>
+		<task_description>KsP 7/19: zaliczka przychód (przychód=85,00)</task_description>
+		<task_date>2019-04-16 00:00:00</task_date>
+		<task_timestamp>2019-04-17 09:01:18</task_timestamp>
+	</case_task>
+	<case_task>
+		<case_task_id>8372</case_task_id>
+		<task_description>KsP 8/19: zaliczka rozchód (rozchód=65,00)</task_description>
+		<task_date>2019-04-16 00:00:00</task_date>
+		<task_timestamp>2019-04-17 09:05:32</task_timestamp>
+	</case_task>
+<case_task><case_task_id>100</case_task_id><task_description>Zawiadomienie o wszczęciu egzekucji</task_description><task_date>2019-04-17 00:00:00</task_date><task_timestamp>2019-04-17 00:00:00</task_timestamp></case_task><case_task><case_task_id>100</case_task_id><task_description>Zawiadomienie o wszczęciu egzekucji</task_description><task_date>2019-04-17 00:00:00</task_date><task_timestamp>2019-04-17 00:00:00</task_timestamp></case_task><case_task><case_task_id>100</case_task_id><task_description>Zawiadomienie o wszczęciu egzekucji</task_description><task_date>2019-04-17 00:00:00</task_date><task_timestamp>2019-04-17 00:00:00</task_timestamp></case_task><case_task><case_task_id>100</case_task_id><task_description>Zawiadomienie o wszczęciu egzekucji</task_description><task_date>2019-04-17 00:00:00</task_date><task_timestamp>2019-04-17 00:00:00</task_timestamp></case_task><case_task><case_task_id>100</case_task_id><task_description>Zawiadomienie o wszczęciu egzekucji</task_description><task_date>2019-04-17 00:00:00</task_date><task_timestamp>2019-04-17 00:00:00</task_timestamp></case_task><case_task><case_task_id>100</case_task_id><task_description>Zawiadomienie o wszczęciu egzekucji</task_description><task_date>2019-04-17 00:00:00</task_date><task_timestamp>2019-04-17 00:00:00</task_timestamp></case_task><case_task><case_task_id>100</case_task_id><task_description>Zawiadomienie o wszczęciu egzekucji</task_description><task_date>2019-04-17 00:00:00</task_date><task_timestamp>2019-04-17 00:00:00</task_timestamp></case_task><case_task><case_task_id>100</case_task_id><task_description>Zawiadomienie o wszczęciu egzekucji</task_description><task_date>2019-04-17 00:00:00</task_date><task_timestamp>2019-04-17 00:00:00</task_timestamp></case_task></case_history>

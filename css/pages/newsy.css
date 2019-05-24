@@ -1,0 +1,59 @@
+.articles{
+    width:94%;
+    margin:0 3% 20px 3%;
+}
+    
+.article{
+    width:100%;
+    display: block;
+    border-bottom:1px solid #eee;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.logo{
+    max-height: 36px;
+}
+
+.article .article-img{
+    width:40%;
+    display:inline-block;
+}
+
+.article .article-img img{
+    max-width: 100%;
+}
+
+.article .article-text{
+    width: 56%;
+    display:inline-block;
+    font-family: 'Avenir LT W04_65 Medium1475536';
+    font-size: 15px;
+    margin-bottom:8px;
+    vertical-align: top;
+    padding-left:10px;
+}
+
+.article .article-text p{
+    font-size: 12px;
+    text-overflow:ellipsis;
+    color: rgba(0, 0, 0, .6);
+
+}
+
+.article .date{
+    font-family: 'Avenir LT W04_65 Medium1475536';
+    font-size: 10px;
+    color:rgb(138, 139, 138);
+}
+
+.article .more-button{
+    position: absolute;
+    bottom: 0;
+    right:10px;
+}
+
+.link:hover{
+    font-weight: bold;
+}

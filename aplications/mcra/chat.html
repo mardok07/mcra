@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html style='width:100%; height:100%; margin:0px; padding:0px;'>
+    <head>
+        <meta charset="UTF-8">
+        <title>Moja Currenda</title>
+        <!--<link href="css/elements/bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
+        <link href="../../css/elements/scrollbar.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/elements/toggle-switch.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/elements/buttons.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/elements/top-bar-menu.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/elements/themify-icons.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/elements/style.css" rel="stylesheet" type="text/css"/>
+        <link type="text/css" rel="stylesheet" href="https://fast.fonts.net/cssapi/320f9210-155f-4c8c-953d-8d50abe65138.css"/> 
+    </head>
+    <body style="height:100%; width:100%;">
+        <div class="header-toolbar">
+            <div class="movable"> Currenda chat</div>
+            <div class="close-app">x</div>
+        </div>
+        <div style='height:100%; width:100%;'> 
+            <iframe src="https://chat.currenda.pl" target="_blank" style="width: 100%; height: 100%; margin-top: 30px; border: none;"></iframe>
+        </div>
+    </body>
+     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+            <script src="../../js/libraries/jquery-3.2.1.min.js"></script>  
+    <script>if (window.module) module = window.module;</script>
+    <script>
+        //close app
+        $('.close-app').click(function(){
+            window.close();
+        });
+    </script>
+</html>
